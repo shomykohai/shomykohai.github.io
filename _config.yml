@@ -49,6 +49,9 @@ projects: [
   https://github.com/shomykohai/kitsu-bot
 ]
 
+sass:
+  style: compressed
+
 dash:
   date_format: "%b %-d, %Y"
 
