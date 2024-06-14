@@ -44,9 +44,9 @@ routes: [
 ]
 
 projects: [
-  https://github.com/shomykohai/kitsu-bot
   https://github.com/shomykohai/quest-system,
   https://github.com/shomykohai/askitsu,
+  https://github.com/shomykohai/kitsu-bot
 ]
 
 dash:
