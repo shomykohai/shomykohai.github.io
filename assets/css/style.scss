@@ -1,0 +1,132 @@
+---
+---
+@import "dash";
+
+
+
+// Colors
+$color-background-light: #e3ecf3;
+$color-background-dark: #1b1e24;
+$color-accent: #ff9100;
+$color-pink: #e98eae;
+$color-red: #FC4957;
+$color-orange: #ff9100;
+$color-yellow: #FCBC28;
+$color-teal: #4BC997;
+$color-green: #50BD6A;
+$color-cyan: #4FC1E4;
+$color-blue: #637AFE;
+$color-indigo: #6775C4;
+$color-purple: #8E59D7;
+$color-in-case-i-make-it: #D98D00;
+$color-cheese-in-the-great-beyond: #B47821;
+
+
+.color-pink { color: $color-pink !important; }
+.color-red { color: $color-red !important; }
+.color-orange { color: $color-orange !important; }
+.color-yellow { color: $color-yellow !important; }
+.color-teal { color: $color-teal !important; }
+.color-green { color: $color-green !important; }
+.color-cyan { color: $color-cyan !important; }
+.color-blue { color: $color-blue !important; }
+.color-indigo { color: $color-indigo !important; }
+.color-purple { color: $color-purple !important; }
+
+.color-pink-hover:hover { color: $color-pink !important; }
+.color-red-hover:hover { color: $color-red !important; }
+.color-orange-hover:hover { color: $color-orange !important; }
+.color-yellow-hover:hover { color: $color-yellow !important; }
+.color-teal-hover:hover { color: $color-teal !important; }
+.color-green-hover:hover { color: $color-green !important; }
+.color-cyan-hover:hover { color: $color-cyan !important; }
+.color-blue-hover:hover { color: $color-blue !important; }
+.color-indigo-hover:hover { color: $color-indigo !important; }
+.color-purple-hover:hover { color: $color-purple !important; }
+
+
+
+// GENERAL TWEAKS
+
+a {
+    color: $color-in-case-i-make-it;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: $color-yellow;
+}
+
+.site-footer {
+    height: 100px;
+    margin-top: auto;
+}
+
+
+.wrapper {
+    // Makes the screen width larger
+    max-width: 1200px !important;
+}
+
+// ADDITIONS
+
+.project-image {
+    border-radius: 1vh;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.project-image-wrapper {
+    display: inline-block;
+    min-width: 40%;
+    min-height: 60%;
+    margin-right: 20px;
+}
+
+.projects {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    
+}
+
+
+.nav-bar {
+    margin-left: 50px;
+}
+
+
+
+// DARK
+
+.theme--dark body{
+    background-color: $color-background-dark;
+}
+
+.theme--dark .credits > a {
+    color: $color-blue;
+}
+
+.theme--dark a:hover {
+    color: $color-cheese-in-the-great-beyond;
+}
+
+.theme--dark h1 h2 h3 h4 h5 h6 {
+    color: $color-yellow;
+}
+
+// LIGHT
+
+.theme--light body{
+    background-color: $color-background-light;
+}
+
+.theme--light .credits {
+    color: $color-background-dark;
+}
+.theme--light .credits > a {
+    color: $color-blue;
+}
+
+.theme--light h1, h2, h3, h4, h5, h6 {
+    color: $color-blue;
+}
