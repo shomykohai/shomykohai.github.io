@@ -67,6 +67,30 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 1200px !important;
 }
 
+ul.related-posts > li:before {
+    color: $color-cheese-in-the-great-beyond;
+    content: "\f0da";
+}
+
+.tag, .tag-cloud > a {
+    color: $color-in-case-i-make-it;
+}
+
+.tag:hover, .tag-cloud > a:hover {
+    text-decoration: none;
+    color: $color-yellow !important;
+}
+.theme--dark .tag:hover, .theme--dark .tag-cloud > a:hover {
+    background-color: #292f35;
+}
+.theme--light .tag:hover, .theme--light .tag-cloud > a:hover {
+    background-color: white;
+}
+
+.pagination > a {
+    color: $color-purple;
+}
+
 // ADDITIONS
 
 .project-image {
@@ -92,9 +116,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-bar {
     margin-left: 50px;
+    text-decoration: underline;
 }
 
-
+.tag-name {
+    color: $color-in-case-i-make-it;
+}
 
 // DARK
 
@@ -114,6 +141,14 @@ h1, h2, h3, h4, h5, h6 {
     color: $color-yellow;
 }
 
+.theme--dark h2 {
+    color: $color-yellow;
+}
+
+.theme--dark h3 {
+    color: $color-yellow;
+}
+
 // LIGHT
 
 .theme--light body{
@@ -127,6 +162,18 @@ h1, h2, h3, h4, h5, h6 {
     color: $color-blue;
 }
 
-.theme--light h1, h2, h3, h4, h5, h6 {
+
+// For some reason changing them all in one selector only
+// modifies the first element, so just make more of em
+
+.theme--light h1 {
+    color: $color-blue;
+}
+
+.theme--light h2 {
+    color: $color-blue;
+}
+
+.theme--light h3 {
     color: $color-blue;
 }

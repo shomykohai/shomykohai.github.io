@@ -5,7 +5,7 @@ layout: default
   {% include author.html %}
 {% endunless %}
 {{ content }}
-{% assign posts_count = paginator.posts | size %}
+{% assign posts_count = paginator.total_posts %}
 <h1>Projects</h1>
 <div class="projects">
   {% for project in site.projects %}
@@ -49,8 +49,6 @@ layout: default
       {% endfor %}
     </div>
 
-    {% include pagination.html %}
-    {% include tags.html %}
 {% else %}
 It seems like there's nothing in here yet... mmh.
 {% endif %}

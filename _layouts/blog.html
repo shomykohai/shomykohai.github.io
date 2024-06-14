@@ -2,10 +2,10 @@
 layout: page
 ---
 <h1>Articles</h1>
-{% assign posts_count = site.posts | size %}
+{% assign posts_count = paginator.total_posts %}
 {% if posts_count > 0 %}   
     <div class="post-links">
-      {% for post in site.posts %}
+      {% for post in paginator.posts %}
         <div class="post-link-wrapper">
           <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
           <div class="post-meta">
@@ -31,7 +31,8 @@ layout: page
     </div>
 
     {% include pagination.html %}
-
+    <h1>All tags</h1>
+    {% include tags.html %}
 
 {% else %}
 This place is empty... It's awful out here, Socrates.
