@@ -12,6 +12,7 @@ plugins:
   - jekyll-feed
   - jekyll/tagging
   - jekyll-paginate-v2
+  - jekyll-sitemap
 
 defaults:
   -
