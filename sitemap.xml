@@ -4,6 +4,10 @@ layout: none
 
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{% assign prepend_url = "https://" %}
+{% if site.url contains "https://" or site.url contains "http://" %}
+    {% assign prepend_url = "" %}
+{% endif %}
 {% for p in site.pages %}
 {% if p.url == page.url %}
     {% continue %}
@@ -21,7 +25,7 @@ layout: none
     {% if site.sitemap.allowed contains page_ext or is_page_without_extension %}
         {% assign full_page_url = p.url | prepend: site.url | replace: '/index.html', '' %}
         <url>
-            <loc>{{ site.url }}{{ p.url | replace: '/index.html', '/'}}</loc>
+            <loc>{{prepend_url}}{{ site.url }}{{ p.url | replace: '/index.html', '/'}}</loc>
             {% if p.last_modified_at %}
                 <lastmod>{{ p.last_modified_at | date_to_xmlschema }}</lastmod>
             {% endif %}
@@ -39,7 +43,7 @@ layout: none
 {% for post in site.posts %}
 {% if post.sitemap == nil or p.sitemap == true %}
     <url>
-        <loc>{{ site.url }}{{ post.url | replace: 'index.html', ''}}</loc> 
+        <loc>{{prepend_url}}{{ site.url }}{{ post.url | replace: 'index.html', ''}}</loc> 
         {% if p.last_modified_at %}
             <lastmod>{{ post.last_modified_at | date_to_xmlschema }}</lastmod>
         {% endif %}
