@@ -12,7 +12,6 @@ plugins:
   - jekyll-feed
   - jekyll/tagging
   - jekyll-paginate-v2
-  - jekyll-sitemap
 
 defaults:
   -
@@ -52,6 +51,12 @@ projects: [
 
 sass:
   style: compressed
+
+sitemap:
+  banned: []
+  allowed: [
+    html
+  ]
 
 dash:
   date_format: "%b %-d, %Y"
