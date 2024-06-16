@@ -1,0 +1,22 @@
+---
+layout: none
+permalink: /api/tags/
+---
+{{page.tag}}
+{% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %}+++{% endunless %}{% endfor %}{% endcapture %}
+{% assign tags = site_tags | split: '+++' %}
+[
+  {%- for tag in tags %}
+    {% assign post_with_tag = site.posts | where: 'tags', tag %}
+    {% assign post_urls = post_with_tag | map: 'url' %}
+    {% assign urls = '' %}
+    {% for url in post_urls %}
+      {% assign urls = urls | append: site.url | append: url | append: '+++'%}
+    {% endfor %}
+    {
+      "title":      {{- tag | jsonify }},
+      "posts":      {{- urls | split: '+++' | jsonify }}
+    }
+    {% unless forloop.last %},{% endunless %}
+  {% endfor -%}
+]
