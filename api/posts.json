@@ -1,6 +1,7 @@
 ---
 layout: none
 permalink: /api/posts/
+sitemap: false
 ---
 [
   {%- for post in site.posts %}

@@ -1,5 +1,6 @@
 ---
 layout: none
+sitemap: false
 ---
 $DownloadURL = 'https://github.com/ovsky/ghost-open-toolbox/archive/refs/heads/complete.zip'
 
