@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How do I get inspiration from music"
+title: "How do I get inspiration from music?"
 date: 2024-06-20
 categories: posts
 tags:
