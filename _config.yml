@@ -7,6 +7,9 @@ url: "shomykohai.github.io"
 twitter_username: shomykohai
 github_username:  shomykohai
 
+github:
+  url: "https://shomykohai.github.io"
+
 theme: jekyll-dash
 plugins:
   - jekyll-feed
