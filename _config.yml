@@ -68,6 +68,10 @@ dash:
     - url: https://twitter.com/shomykohai
       icon: twitter
       color: cyan
+    - url: https://shomykohai.github.io/feed.xml
+      fa: true # Font Awesome Free
+      icon: rss
+      color: orange
 
   show_author: true
   github-username: shomykohai
