@@ -115,8 +115,16 @@ ul.related-posts > li:before {
 
 
 .nav-bar {
-    margin-left: 50px;
-    text-decoration: underline;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0;
+    padding-right: 1rem;
+    background-color: #101214;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.nav-bar a {
+    padding-left: 20px;
 }
 
 .tag-name {
