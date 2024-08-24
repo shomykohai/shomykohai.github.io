@@ -7,6 +7,8 @@
 // Colors
 $color-background-light: #e3ecf3;
 $color-background-dark: #1b1e24;
+$color-dark-accent: #101214;
+$color-light-accent: #dde5eb;
 $color-accent: #ff9100;
 $color-pink: #e98eae;
 $color-red: #FC4957;
@@ -118,7 +120,6 @@ ul.related-posts > li:before {
     border-radius: 0.5rem;
     padding: 0.5rem 0;
     padding-right: 1rem;
-    background-color: #101214;
     margin-left: 20px;
     text-decoration: none;
 }
@@ -157,6 +158,10 @@ ul.related-posts > li:before {
     color: $color-yellow;
 }
 
+.theme--dark .nav-bar {
+    background: $color-dark-accent;
+}
+
 // LIGHT
 
 .theme--light body{
@@ -170,6 +175,9 @@ ul.related-posts > li:before {
     color: $color-blue;
 }
 
+.theme--light .nav-bar {
+    background: $color-light-accent;
+}
 
 // For some reason changing them all in one selector only
 // modifies the first element, so just make more of em
