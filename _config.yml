@@ -3,7 +3,7 @@ description:
   Musician, gamer and developer.
   Currently making my dream game 🎮.
 baseurl: ""
-url: "https://shomykohai.github.io"
+url: "https://shomy.is-a.dev"
 twitter_username: shomykohai
 github_username:  shomykohai
 
@@ -69,7 +69,7 @@ dash:
     - url: https://twitter.com/shomykohai
       icon: twitter
       color: cyan
-    - url: https://shomykohai.github.io/feed.xml
+    - url: https://shomy.is-a.dev/feed.xml
       fa: true # Font Awesome Free
       icon: rss
       color: orange
