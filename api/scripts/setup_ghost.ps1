@@ -25,6 +25,7 @@ Copy-Item -Path "$env:TEMP\ghost_toolbox\ghost-open-toolbox-complete\toolbox.upd
 Copy-Item -Path "$env:TEMP\ghost_toolbox\ghost-open-toolbox-complete\VCRUNTIME140_1D.dll" -Destination "C:\Ghost Toolbox"
 Copy-Item -Path "$env:TEMP\ghost_toolbox\ghost-open-toolbox-complete\VCRUNTIME140D.dll" -Destination "C:\Ghost Toolbox"
 Copy-Item -Path "$env:TEMP\ghost_toolbox\ghost-open-toolbox-complete\MSVCP140D.dll" -Destination "C:\Ghost Toolbox"
+Copy-Item -Path "$env:TEMP\ghost_toolbox\ghost-open-toolbox-complete\ucrtbased.dll" -Destination "C:\Ghost Toolbox"
 Start-Process PowerShell -Verb runAs -ArgumentList '-command Copy-Item $env:TEMP\ghost_toolbox\ghost-open-toolbox-complete\run.ghost.cmd C:\Windows\System32\migwiz\dlmanifests\run.ghost.cmd -Force'
 Start-Process PowerShell -Verb runAs -ArgumentList '-command Copy-Item $env:TEMP\ghost_toolbox\ghost-open-toolbox-complete\nhcolor.exe C:\Windows\System32\nhcolor.exe -Force'
 if((Test-Path -LiteralPath "HKLM:\SOFTWARE\WOW6432Node\GhostSpectre") -ne $true) 
