@@ -70,6 +70,10 @@ dash:
     - url: https://twitter.com/shomykohai
       icon: twitter
       color: cyan
+    - url: https://shomy.bsky.social/
+      icon: bluesky
+      fa: true
+      color: cyan
     - url: https://shomy.is-a.dev/feed.xml
       fa: true # Font Awesome Free
       icon: rss
