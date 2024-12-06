@@ -123,8 +123,8 @@ Furthermore, QuestSystem has been used with many other plugins, such as [Dialogu
 - [Cogito](https://github.com/Phazorknight/Cogito)
 
 **Videos using QuestSystem**
-- [Trobugno: "What's new? Quests and more | Arkaruh's Tale Devlog 2"](https://www.youtube.com/watch?v=xFB74hBJawA)
-- [LandonDevelops: "Creating a quest system for my indie RPG game | Godot devlog"](https://www.youtube.com/watch?v=D6X2Ex6m0vk)
+- Trobugno: ["What's new? Quests and more | Arkaruh's Tale Devlog 2"](https://www.youtube.com/watch?v=xFB74hBJawA)
+- LandonDevelops: ["Creating a quest system for my indie RPG game | Godot devlog"](https://www.youtube.com/watch?v=D6X2Ex6m0vk)
 
 ## Actually designing the quests
 
