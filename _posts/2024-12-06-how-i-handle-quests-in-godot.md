@@ -34,7 +34,7 @@ Being QuestSystem a generalized system, it may be hard for newcomers to understa
 
 > QuestSystem is intended to be easy, but <u>requires at least some coding knowledge.</u><br>
 
-While I like a code-based approach, it's not scalable to some extent, and does not play well with Godot's **composition over inheritance** philosophy.<br>
+While I prefer a code-based approach, it's not scalable to some extent, and does not play well with Godot's **composition over inheritance** philosophy.<br>
 
 That's why I designed my [quest script](https://github.com/shomykohai/advanced-quest-system-example/blob/main/quests/scripts/base_quest.gd) to be just one file that handles all quest resources.
 
@@ -91,11 +91,10 @@ QuestStep is a custom Resource that has to be extended to make more specific log
 
 Here's the example quest in the [advanced-quest-system-example](https://github.com/shomykohai/advanced-quest-system-example/) repo:
 
-*The inspector*<br>
-![Quest System example inspector](/media/posts/2024/quest_system_example_inspector.png)
 
-*The quest step inspector*<br>
-![Quest Step inspector](/media/posts/2024/quest_system_example_inspector_step.png)
+*The inspector* | *The quest step inspector* |
+:------:|:------: 
+![Quest System example inspector](/media/posts/2024/quest_system_example_inspector.png) | ![Quest Step inspector](/media/posts/2024/quest_system_example_inspector_step.png)
 
 
 ## The power of a modular quest system
