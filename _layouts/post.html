@@ -28,7 +28,11 @@ categories: blog
         {% endfor %}
     </div>
 </div>
-  
+
+{% unless page.allow_comments == false %}
+  {% include comments %}
+{% endunless %}
+
 {% assign size = site.related_posts | size %}
 {% if size != 0 %}
 <div class="related">
