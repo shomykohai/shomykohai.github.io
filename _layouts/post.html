@@ -30,7 +30,7 @@ categories: blog
 </div>
 
 {% unless page.allow_comments == false %}
-  {% include comments %}
+  {% include comments.html %}
 {% endunless %}
 
 {% assign size = site.related_posts | size %}
