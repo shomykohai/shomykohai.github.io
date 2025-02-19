@@ -245,8 +245,14 @@ Now that the phone got unlocked, Roger decided to build a payload to inject code
 
 This payload protects the device from being relocked and blocks flashing of protected partitions that might hard brick the device.
 
+I suggest using this custom bootloader for safety reasons, mainly avoiding malicious script (considering the default flash script in the firmware) to completely brick the phone.<br><br>
+
+To get the custom bootloader you can either [compile it from source](https://github.com/R0rt1z2/chouchou), or get pre-compiled and tested binaries [on the documentation](https://penangf.fuckyoumoto.xyz/docs/modding/custom-bootloader).
+
 
 ## Video Guide
+
+This is a quick video guide made by DiabloSat showing off how to unlock the phone + the installation of the custom bootloader.
 
 <iframe height="315" src="https://www.youtube-nocookie.com/embed/3fHfiqM7UUg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
