@@ -3,6 +3,7 @@ layout: post
 author: Shomy
 title: "Unlocking the Motorola G23 (and some words on Motorola)"
 date: 2025-02-13
+updated_at: 2025-04-28
 categories: posts
 tags:
 - Android Modding
