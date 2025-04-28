@@ -1,7 +1,7 @@
 ---
 layout: post
 author: Shomy
-title: "Unlocking the Motorola G23"
+title: "Unlocking the Motorola G23 (and some words on Motorola)"
 date: 2025-02-13
 categories: posts
 tags:
@@ -33,7 +33,7 @@ This wouldn't be a problem, if only the preloader wasn't patched! Crash DA wasn'
 Just like that, I was stuck.<br><br>
 
 So, I tried extracting the firmware from the official rescue software, RSA, and I was able to find both the stock firmware and the flash tool, the latter being an encrypted zip file.<br>
-In the firmware I found a file named `MT6768_USER.bin`, which seemed to work at some extent.I tried using mtkclient's `da unlock` command, and it failed.<br>
+In the firmware I found a file named `MT6768_USER.bin`, which seemed to work at some extent. I tried using mtkclient's `da unlock` command, and it failed.<br>
 I knew RSA was able to flash stock firmware somehow, so tried getting the flash tool RSA used, and I was able to get the Flash Tool unencrypted by making RSA start a rescue, in which the tool had to be extracted beforehand.<br>
 In the Flash Tool, I've found another Download Agent, which I used with mtkclient, and this one booted too! Unfortunately, it seemed like the DA wasn't able to read partitions or flash anything.<br><br>
 
@@ -58,16 +58,16 @@ Unfortunately, this concluded nothing, and I was stuck once again, and decided t
 
 ## The testpoints
 
-Around December 2024, I found another repository popup with the schematics for the phone, and I found out that the device had testpoints, which could be used to force BROM.
+Around December 2024, I found another repository popup on GitHub with the schematics for the phone, and I found out that the device had testpoints, which could be used to force BROM.
 
-I decided to open an issue on the schematics repository, and I was able to get in touch with the DiabloSat, who uploaded the schematics.
+I decided to open an issue on the schematics repository, and I was able to get in touch with DiabloSat, who uploaded the schematics.
 
-From that day to until February 2025, we decided to team up to finally unlock the bootloader of the phone.<br>
-We shared ideas, possible testpoints and more, but unfortunately, we couldn't find a way to force BROM.
+From that day to until February 2025, me and DiabloSat teamed up to hopefully unlock the bootloader of the phone.<br>
+We shared ideas, possible testpoints and more, but unfortunately, we couldn't find a way to force BROM mode.
 
-We started to document all the discoveries we made, which can be accessed [here](https://penangf.fuckyoumoto.xyz).
+I started to document all the discoveries we made, and Diablo started contributing too. All the documentation can now be accessed [here](https://penangf.fuckyoumoto.xyz). 
 
-In the meantime, I decided to decompile the bootloader and the preloader, to find out how the device worked, and I found out that the preloader should be able to.
+As a side quest to the other researches we were making, I started decompiling the bootloader (lk, which is responsible for integrating the fastboot protocol) and the preloader (first stage of boot after the BootROM), to find out how the device worked. Here I found out that the preloader has a trigger to reboot into DOWNLOAD_MODE (aka, what we wanted) with a specific combinationof keys: 
 
 ```c
 #define KPDL1 KPCOL0 // 0
@@ -108,22 +108,24 @@ _Photo by DiabloSat_
 
 We were able to find the logs in the `expdb` partition, in which the phone seemed to indeed call the `platform_emergency_download` function, but unfortunately, the device would just reboot into preloader mode.
 
+
+This, on a future retrospective, can be explained by the fact that the device is fused, which means the usb enumeration for download mode happens during preloder initialization, and not in BROM.
+
 ## Decompiling the bootloader
 
-While DiabloSat was testing the testpoints and trying to force mtkclient to send the device to BROM, I decided to decompile **lk.img**, the bootloader of the device.<br>
+While DiabloSat was testing more testpoints and trying to force mtkclient to send the device to BROM, I decided to decompile **lk.img**, the bootloader of the device.<br>
 
 There I found something really interesting, our device was indeed able to be unlocked, compared to what official sources said.<br>
 
 The problem was, the device needed a key to be unlocked.<br>
-We were blocked again.<br>
+This obviously made things a lot harder, since it would have meant that we had to bruteforce the key or figure out the algorithm that checks the key.
 
-But, one day Diablo found out about two important commands for us: `fastboot oem get_key` and `fastboot oem key <KEY>`.<br>
+One day Diablo found out about two important commands for us: `fastboot oem get_key` and `fastboot oem key <KEY>`.<br>
 
 We had it, we thought.<br>
-The key from the first command, unfortunately, was not the one we were looking for.<br>
-Or so, we thought at first.<br><br>
+The key from the first command, unfortunately, was not the one we were looking for (or so, we thought at first).<br><br>
 
-I tried looking back at LK, and I found out the function that generates the key, which used a SHA256, and for a few days, we tried to reverse engineer the key, but we couldn't.<br>
+I tried looking back at LK, and I found out the function that checks for the correct key, and, for a few days, I tried to reverse engineer the key, but I couldn't.<br>
 
 Then for another week or two, we focused on trying again to force BROM, and Diablo contacted [R0rt1z2](https://github.com/R0rt1z2), who apparently had experience with MediaTek devices.<br>
 
@@ -131,7 +133,9 @@ Roger bought a Moto G13, and he tried to try some of the testpoints we found, bu
 
 We thought about exploiting a buffer overflow, but then..<br><br>
 
-I decided to finally reverse engineer how the key was generated from the phone.
+I decided to finally put all my efforts on the only guaranteed to work method: reverse engineer how the key was generated from the phone.
+
+Below, is the final algorithm I reverse engineered using Ghidra
 
 ```c
 #define UNLOCK_KEY_SIZE 32
@@ -161,12 +165,8 @@ int fastboot_flashing_unlock_chk_key(void)
         sha256(thing_to_hash, 64, hashed_value);
         
 
-        printf("Hash is: ");
-        for (int i = 0; i < 32; i++) printf("%02x", hashed_value[i]);
 
-        printf("\n");
-
-        len = compare_strings_until_length(fb_unlock_key_str, (char*)hashed_value, UNLOCK_KEY_SIZE);
+        len = strncmp(fb_unlock_key_str, (char*)hashed_value, UNLOCK_KEY_SIZE);
         if (len != 0) {
             fastboot_fail("Unlock key code is incorrect!");
             return 0x7001;
@@ -235,7 +235,7 @@ The days later were spent on trying to find a way to boot TWRP (thanks [@GitFAST
 <img src="/media/posts/2025/twrp_mainscreen.jpg" alt="TWRP main screen" style="width: 30%; heigth: 30%"/>
 
 
-The plans for the future are to try to port LineageOS, and spread the word about the device, and how it can be unlocked.
+The plans for the future are to try to port LineageOS, spread the word about the device and how it can be unlocked, and make it faster!
 
 ## Chouchou (Custom bootloader)
 
@@ -255,6 +255,32 @@ To get the custom bootloader you can either [compile it from source](https://git
 This is a quick video guide made by DiabloSat showing off how to unlock the phone + the installation of the custom bootloader.
 
 <iframe height="315" src="https://www.youtube-nocookie.com/embed/3fHfiqM7UUg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+## Making the phone faster
+
+> NOTE: This section was added after the original blog post, as I felt some of this information is important to mention.
+
+Diablo decided to make a debloated version of the firmware, and I helped with it.
+
+While making the build, I (for some not so specific reason) decided to analyse network traffic in idle, to then discover how Moto has many system apps and services in its stock firmware that allows them to completely lock you out from using the device. Most notably PAKS (present in all Motorola devices) and SysDLL (known as `co.sitic.pp`).
+
+The first is moto in house MDM system, which is completely integrated into SystemUI to force lock you out.
+
+The latter is yet another MDM app, specific to South American carriers. This app in particular is what can be considered spyware. It's specifically hidden within the application list (can be confirmed by decompiling the settings appnwith jadx) and every ~10-15 seconds it sends a POST request to various servers with the 1st IMEI to know if to lock the device.
+
+We removed it in DebloatedMotoWeed, as well as removing bloatware, invasive ads and more from the firmware.
+
+## Some words on Motorola
+
+It is now clear that Motorola doesn't care of its customers, as it can be seen on how even flagships are full of ads, blaterare and more.
+
+Moto g23 in particular is the perfect example of how low-mid range devices (mainky mediatek and unisoc) are not in their interest. This is also proven by the fact that these phones are not even produced by them, but by third party ODMs (Huaqin for g23/g13, Tinno for g24 and g15).
+
+The moto g23 has an artificially inserted limitations for not allowing bootloader unlock, as Moto Agents confirm when affirming "Some devices are designed to not allow bootloader unlocking". And a worse case is the moto g24, which can only be unlocked (recent discovery we made) by having an engineer download agent, and by manually patching the auto relocked feature Tinno put in the bootloader.
+
+Furthermore, it appears Moto (Lenovo) imposes its ODMs to include referral code that gets injected into Android props (in g23 firmware I found referrals for Facebook Ads, Spotify and  some others).
+
+Motorola is clearly only interested in shipping as many phones as possible, all while making it impossible to unlock on many models, or by removing your warranty on supported models just by getting (and not even using) the unlock code. Don't buy a Motorola phone if you care about your freedom of having a phone that lasts more than a year and doesn't artificially get slowed down.
 
 ## Conclusion
 
