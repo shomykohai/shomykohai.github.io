@@ -67,7 +67,8 @@ We shared ideas, possible testpoints and more, but unfortunately, we couldn't fi
 
 I started to document all the discoveries we made, and Diablo started contributing too. All the documentation can now be accessed [here](https://penangf.fuckyoumoto.xyz). 
 
-As a side quest to the other researches we were making, I started decompiling the bootloader (lk, which is responsible for integrating the fastboot protocol) and the preloader (first stage of boot after the BootROM), to find out how the device worked. Here I found out that the preloader has a trigger to reboot into DOWNLOAD_MODE (aka, what we wanted) with a specific combinationof keys: 
+As a side quest to the other researches we were making, I started decompiling the bootloader (lk, which is responsible for integrating the fastboot protocol) and the preloader (first stage of boot after the BootROM), to find out how the device worked.<br>
+Here I found out that the preloader has a trigger to reboot into DOWNLOAD_MODE (aka, what we wanted) with a specific combinationof keys: 
 
 ```c
 #define KPDL1 KPCOL0 // 0
