@@ -5,6 +5,7 @@ title: "Unlocking the Motorola G23 (and some words on Motorola)"
 date: 2025-02-13
 updated_at: 2025-04-28
 categories: posts
+image: media/posts/2025/chouchou_injection.png
 tags:
 - Android Modding
 - Bootloader Unlocking
