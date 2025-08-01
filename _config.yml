@@ -1,17 +1,14 @@
 title: shomy
-description:
-  Musician, gamer and developer.
-  Currently making my dream game 🎮.
+description: "Musician, developer."
 baseurl: ""
 url: "https://shomy.is-a.dev"
-twitter_username: shomykohai
-github_username:  shomykohai
 
-theme: jekyll-dash
+theme: jekyll-maple
 plugins:
   - jekyll-feed
   - jekyll/tagging
   - jekyll-paginate-v2
+  - jekyll-maple
 
 defaults:
   -
@@ -21,8 +18,6 @@ defaults:
     values:
       permalink: "/blog/article/:title"
 
-# For compatibility with dash's pagination.html
-paginate_path: /page/:num/
 
 pagination:
   enabled: true
@@ -36,7 +31,7 @@ pagination:
 
 
 tag_permalink_style: pretty
-tag_page_layout: tag_page
+tag_page_layout: tag-page
 tag_page_dir: tag
 
 routes: [
@@ -60,24 +55,55 @@ sitemap:
     html
   ]
 
-dash:
-  date_format: "%b %-d, %Y"
 
+# Theme specific settings
+maple:
+  date_format: "%b %-d, %Y"
+  footer: "Built with Jekyll &amp Maple Leaves by <a href=\"https://github.com/shomykohai\">Shomy</a> — inspired by autumn and coziness."
+  # Maximum number of articles to show in the default home page and articles.html include
+  limit_shown_articles: true
+  shown_articles_limit: 5
   social_links:
     - url: https://github.com/shomykohai
       icon: github
       color: purple
-    - url: https://twitter.com/shomykohai
-      icon: twitter
-      color: cyan
-    - url: https://shomy.bsky.social/
+    - url: https://shomy.bsky.social
       icon: bluesky
       color: cyan
     - url: https://shomy.is-a.dev/feed.xml
-      fa: true # Font Awesome Free
       icon: rss
-      color: orange
-
-  show_author: true
-  github-username: shomykohai
-  avatar_source: github
+      fa-class: "solid" 
+      color: in-case-i-make-it
+    
+  routes:
+    - url: /
+      title: Home
+      icon: home
+    - url: /blog/
+      title: Blog
+      icon: pen
+    - url: /docs/
+      title: Docs
+      icon: book
+    
+  
+  enable_authors_page: false
+  authors:
+    - id: shomy
+      name: Shomy
+      description: "Musician and developer • she/they"
+      image:
+        provider: "local"
+        path: "media/avatar.jpg"
+      
+    
+  sitemap:
+    enable: true
+    exclude_tags: true
+    banned_routes:
+      - /404.html
+      - /feed.xml
+      - /sitemap.xml
+    allowed_extensions: [
+      html
+    ]

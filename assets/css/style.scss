@@ -1,195 +1,28 @@
 ---
 ---
-@import "dash";
+@use "maple";
 
 
-
-// Colors
-$color-background-light: #e3ecf3;
-$color-background-dark: #1b1e24;
-$color-dark-accent: #101214;
-$color-light-accent: #dde5eb;
-$color-accent: #ff9100;
-$color-pink: #e98eae;
-$color-red: #FC4957;
-$color-orange: #ff9100;
-$color-yellow: #FCBC28;
-$color-teal: #4BC997;
-$color-green: #50BD6A;
-$color-cyan: #4FC1E4;
-$color-blue: #637AFE;
-$color-indigo: #6775C4;
-$color-purple: #8E59D7;
 $color-in-case-i-make-it: #D98D00;
 $color-cheese-in-the-great-beyond: #B47821;
 
-
-.color-pink { color: $color-pink !important; }
-.color-red { color: $color-red !important; }
-.color-orange { color: $color-orange !important; }
-.color-yellow { color: $color-yellow !important; }
-.color-teal { color: $color-teal !important; }
-.color-green { color: $color-green !important; }
-.color-cyan { color: $color-cyan !important; }
-.color-blue { color: $color-blue !important; }
-.color-indigo { color: $color-indigo !important; }
-.color-purple { color: $color-purple !important; }
-
-.color-pink-hover:hover { color: $color-pink !important; }
-.color-red-hover:hover { color: $color-red !important; }
-.color-orange-hover:hover { color: $color-orange !important; }
-.color-yellow-hover:hover { color: $color-yellow !important; }
-.color-teal-hover:hover { color: $color-teal !important; }
-.color-green-hover:hover { color: $color-green !important; }
-.color-cyan-hover:hover { color: $color-cyan !important; }
-.color-blue-hover:hover { color: $color-blue !important; }
-.color-indigo-hover:hover { color: $color-indigo !important; }
-.color-purple-hover:hover { color: $color-purple !important; }
-
-
-
-// GENERAL TWEAKS
-
-a {
+.color-in-case-i-make-it::hover {
     color: $color-in-case-i-make-it;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: $color-yellow;
-}
-
-.site-footer {
-    height: 100px;
-    margin-top: auto;
-}
-
-
-.wrapper {
-    // Makes the screen width larger
-    max-width: 1200px !important;
-}
-
-ul.related-posts > li:before {
-    color: $color-cheese-in-the-great-beyond;
-    content: "\f0da";
-}
-
-.tag, .tag-cloud > a {
-    color: $color-in-case-i-make-it;
-}
-
-.tag:hover, .tag-cloud > a:hover {
-    text-decoration: none;
-    color: $color-yellow !important;
-}
-.theme--dark .tag:hover, .theme--dark .tag-cloud > a:hover {
-    background-color: #292f35;
-}
-.theme--light .tag:hover, .theme--light .tag-cloud > a:hover {
-    background-color: white;
-}
-
-.pagination > a {
-    color: $color-purple;
-}
-
-// ADDITIONS
-
-.project-image {
-    border-radius: 1vh;
-    min-width: 100%;
-    min-height: 100%;
-}
-
-.project-image-wrapper {
-    display: inline-block;
-    min-width: 40%;
-    min-height: 60%;
-    margin-right: 20px;
-}
-
-.projects {
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    
-}
-
-
-.nav-bar {
-    border-radius: 0.5rem;
-    padding: 0.5rem 0;
-    padding-right: 1rem;
-    margin-left: 20px;
-    text-decoration: none;
-}
-
-.nav-bar a {
-    padding-left: 20px;
-}
-
-.tag-name {
-    color: $color-in-case-i-make-it;
-}
-
-// DARK
-
-.theme--dark body{
-    background-color: $color-background-dark;
-}
-
-.theme--dark .credits > a {
-    color: $color-blue;
-}
-
-.theme--dark a:hover {
+.color-cheese-in-the-great-beyond::hover {
     color: $color-cheese-in-the-great-beyond;
 }
 
-.theme--dark h1 h2 h3 h4 h5 h6 {
-    color: $color-yellow;
+// .root {
+//     --in-case-i-make-it: $color-in-case-i-make-it;
+//     --cheese-in-the-great-beyond: $color-cheese-in-the-great-beyond;
+// }
+
+.post img {
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+    display: block;
 }
 
-.theme--dark h2 {
-    color: $color-yellow;
-}
-
-.theme--dark h3 {
-    color: $color-yellow;
-}
-
-.theme--dark .nav-bar {
-    background: $color-dark-accent;
-}
-
-// LIGHT
-
-.theme--light body{
-    background-color: $color-background-light;
-}
-
-.theme--light .credits {
-    color: $color-background-dark;
-}
-.theme--light .credits > a {
-    color: $color-blue;
-}
-
-.theme--light .nav-bar {
-    background: $color-light-accent;
-}
-
-// For some reason changing them all in one selector only
-// modifies the first element, so just make more of em
-
-.theme--light h1 {
-    color: $color-blue;
-}
-
-.theme--light h2 {
-    color: $color-blue;
-}
-
-.theme--light h3 {
-    color: $color-blue;
-}
