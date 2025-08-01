@@ -1,53 +1,38 @@
 ---
 layout: default
 ---
-{% unless site.dash.show_author == false %}
-  {% include author.html %}
-{% endunless %}
-{{ content }}
 {% assign posts_count = paginator.total_posts %}
 <h1>Projects</h1>
-<div class="projects">
-  {% for project in site.projects %}
-  {% capture project_image %}
-  {{'/media/projects/'}}{{ "$reponame" | replace: "$reponame", project | split: "/" | last }}.png' }}
-  {% endcapture %}
-  {% if project_image %}
-  <div class="project-image-wrapper">
-    <a href="{{project}}">
-      <img src='{{ project_image }}' class="project-image" width="60%"/>
-    </a>
+<section class="projects-section">
+  <div class="card-grid">
+    {% for project in site.projects %}
+    {% capture project_image %}
+    {{'/media/projects/'}}{{ "$reponame" | replace: "$reponame", project | split: "/" | last }}.png
+    {% endcapture %}
+    
+    <div class="card">
+      <div class="card-image-wrapper">
+        <a href="{{ project }}">
+          <img src="{{ project_image }}" class="card-image" alt="Image for {{ project }}" />
+        </a>
+      </div>
+
+      <!-- Section 2: Project Info -->
+      <div class="card-content" style="text-align: center;"">
+        <h3>
+          <a href="{{ project }}">{{ project | split: '/' | last }}</a>
+        </h3>
+      </div>
+
+    </div>
+    {% endfor %}
   </div>
-  {% endif %}
-  {% endfor %}
-</div>
+</section>
+
 <h1>Recent articles</h1>
 {% if posts_count > 0 %}
-    <div class="post-links">
-      {% for post in paginator.posts %}
-        <div class="post-link-wrapper">
-          <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
-          <div class="post-meta">
 
-            <div class="post-tags">
-                {% for tag in post.tags %}
-                <a class="tag" href="{{ tag | tag_url | downcase }}">{{ tag }}</a>
-                {% endfor %}
-            </div>
-            {% if site.dash.date_format %}
-              {{ post.date | date: site.dash.date_format }}
-            {% else %}
-              {{ post.date | date: "%b %-d, %Y" }}
-            {% endif %}
-            {% if site.show_excerpts == true %}
-              <div class="post-excerpt">
-                {{ post.content | strip_html | truncatewords: 50 }}
-              </div>
-            {% endif %}
-          </div>
-        </div>
-      {% endfor %}
-    </div>
+{% include articles.html %}
 
 {% else %}
 It seems like there's nothing in here yet... mmh.

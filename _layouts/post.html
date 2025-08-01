@@ -2,55 +2,63 @@
 layout: default
 categories: blog
 ---
-{% unless site.dash.show_author == false %}
-  {% include author.html %}
-{% endunless %}
-<div class="post">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <div class="post-date">
-      <i class="fa fa-clock"></i>
-      <!-- xf017 -->
-      Published on {{ page.date | date_to_string }}
-      {% if page.author != null %}
-      by {{ page.author }}
-      {% endif %}
-      {% if page.updated_at != null %}
-      • Updated on {{ page.updated_at | date_to_string }}
-      {% endif %}
+<div class="post-container">
+    <div class="post">
+        <h1 class="post-title">{{ page.title }}</h1>
+        <div class="post-date">
+            <i class="fa fa-clock"></i>
+            Published on {{ page.date | date_to_string }}
+            {% if page.author != null %}
+            by {{ page.author }}
+            {% endif %}
+            {% if page.updated_at != null %}
+            • Updated on {{ page.updated_at | date_to_string }}
+            {% endif %}
+        </div>
+        {% if page.description != null %}
+        <noscript>
+            <div class="post-description">{{ page.description }}</div>
+        </noscript>
+        <div id="animated-post-description" class="post-description" style="display: none;"></div>
+        {% endif %}
+        {{ content }}
     </div>
-    {% if page.description != null %}
-    <noscript>
-        <div class="post-description">{{ page.description }}</div>
-    </noscript>
-    <div id="animated-post-description" class="post-description" style="display: none;"></div>
-    {% endif %}
-    {{ content }}
-    <div class="post-tags">
-        {% for tag in page.tags %}
-        <a class="tag" href="{{ tag | tag_url }}">{{ tag }}</a>
-        {% endfor %}
+
+    <div class="post-sidebar">
+        {% include author-card.html %}
+        <div class="toc">
+            {% toc %}
+        </div>
+        <div class="post-tags">
+            {% for tag in page.tags %}
+            <a class="tag" href="{{ tag | tag_url }}">{{ tag }}</a>
+            {% endfor %}
+        </div>
     </div>
 </div>
+</div>
 
-{% unless page.allow_comments == false %}
-  {% include comments.html %}
-{% endunless %}
+
+{% include comments.html %}
 
 {% assign size = site.related_posts | size %}
 {% if size != 0 %}
 <div class="related">
-<h2>related articles</h2>
-<ul class="related-posts">
-    {% for post in site.related_posts limit:3 %}
-    <li>
-        <h3>
-        <a href="{{ post.url }}">
-            {{ post.title }}
-        </a>
-        </h3>
-    </li>
-    {% endfor %}
-</ul>
+    <h2>Related articles</h2>
+    <ul class="related-posts">
+        {% for post in site.related_posts limit:3 %}
+        <li>
+            <h3>
+                <a href="{{ post.url }}">
+                    {{ post.title }}
+                </a>
+            </h3>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 {% endif %}
 
+
+<button id="jump-to-top">🡹</button>
+<script src="{{ '/assets/js/jump-to-top.js' | relative_url }}"></script>
