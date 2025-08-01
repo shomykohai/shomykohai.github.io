@@ -59,7 +59,7 @@ sitemap:
 # Theme specific settings
 maple:
   date_format: "%b %-d, %Y"
-  footer: "Built with Jekyll &amp Maple Leaves by <a href=\"https://github.com/shomykohai\">Shomy</a> — inspired by autumn and coziness."
+  footer: "Built by <a href=\"https://github.com/shomykohai\">Shomy</a> with <a href=\"https://github.com/shomykohai/jekyll-maple\">🍁</a> — inspired by autumn and fairies."
   # Maximum number of articles to show in the default home page and articles.html include
   limit_shown_articles: true
   shown_articles_limit: 5
@@ -73,7 +73,7 @@ maple:
     - url: https://shomy.is-a.dev/feed.xml
       icon: rss
       fa-class: "solid" 
-      color: in-case-i-make-it
+      color: dreamy-yellow
     
   routes:
     - url: /
