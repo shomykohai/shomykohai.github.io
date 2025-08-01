@@ -4,6 +4,7 @@ author: Shomy
 title: "How I handle quests in godot"
 date: 2024-12-06
 categories: posts
+image: media/posts/2024/quest_system_banner.png
 tags:
 - Gamedev
 - Godot
