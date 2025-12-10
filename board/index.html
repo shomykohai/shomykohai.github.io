@@ -1,0 +1,115 @@
+---
+layout: default
+title: Board
+permalink: /board/
+pagination:
+    enabled: true
+    collection: "board"
+    per_page: 8
+    permalink: "page/:num/"
+    sort_field: "date"
+    sort_reverse: true
+---
+
+<div style="text-align: center">
+    <div
+        style="
+            display: inline-block;
+            text-align: center;
+            border: 2px solid var(--border);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+        "
+    >
+        <p>
+            Just a small board where you can post something short, like a
+            thought.<br />
+            <a href="https://github.com/shomykohai/shomykohai.github.io/">
+                Want to post?
+            </a>
+        </p>
+    </div>
+</div>
+
+{% if paginator.posts and paginator.posts.size > 0 %} {% assign board_posts =
+paginator.posts %} {% else %} {% assign board_posts = site.board | sort: "date"
+| reverse %} {% endif %} {% if board_posts and board_posts.size > 0 %}
+<div class="board-grid">
+    {% for post in board_posts %}
+    <article class="board-card">
+        <div class="board-card-content">
+            {% if post.title %}
+            <h3>{{ post.title }}</h3>
+            {% endif %}
+            <div class="board-text">{{ post.content_html }}</div>
+            {% if post. images and post.images.size > 0 %}
+            <div class="board-images">
+                {% for img in post.images %}
+                <img
+                    src="{{ img.url | relative_url }}"
+                    alt="{{ img.alt }}"
+                    class="board-post-image"
+                    loading="lazy"
+                />
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="board-card-meta">
+            <div class="board-author">
+                <img
+                    src="{{ post.author_pfp | default: site.boardcfg.default_avatar | relative_url }}"
+                    class="board-avatar"
+                    alt="{{ post.author }}"
+                    loading="lazy"
+                />
+                <span class="board-author-name">
+                    {% if post.author_link %}
+                    <a
+                        href="{{ post.author_link }}"
+                        target="_blank"
+                        rel="noopener"
+                        >{{ post.author | default: "Anonymous" }}</a
+                    >
+                    {% else %} {{ post.author | default: "Anonymous" }} {% endif
+                    %}
+                </span>
+            </div>
+            <span class="board-date">
+                {{ post.date | date: "%B %-d, %Y" }}
+            </span>
+        </div>
+    </article>
+    {% endfor %}
+</div>
+
+{% if paginator and paginator.total_pages > 1 %} {% include pagination.html
+paginator=paginator %} {% endif %} {% else %}
+<style type="text/css" media="screen">
+    .container {
+        margin: 10px auto;
+        max-width: 600px;
+        text-align: center;
+    }
+    h1 {
+        margin: 30px 0;
+        font-size: 4em;
+        line-height: 1;
+        letter-spacing: -1px;
+    }
+</style>
+
+<div class="container">
+    <h3><strong>No posts yet!!</strong></h3>
+    <p>Be the first!.</p>
+    <p>
+        <small
+            ><i
+                >Space is emptiness, dark and so cold. Can you define its
+                presence, does it exist?</i
+            ></small
+        >
+    </p>
+</div>
+{% endif %}

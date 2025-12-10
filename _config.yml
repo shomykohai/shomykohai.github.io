@@ -11,55 +11,54 @@ plugins:
   - jekyll-maple
 
 defaults:
-  -
-    scope:
+  - scope:
       path: ""
       type: "posts"
     values:
       permalink: "/blog/article/:title"
 
+collections:
+  board:
+    output: false
 
 pagination:
   enabled: true
   debug: true
-  collection: 'posts'
+  collection: "posts"
   per_page: 5
-  permalink: 'page/:num/'
-  title: ':title - page'
-  sort_field: 'date'
+  permalink: "page/:num/"
+  title: ":title - page"
+  sort_field: "date"
   sort_reverse: true
-
 
 tag_permalink_style: pretty
 tag_page_layout: tag-page
 tag_page_dir: tag
 
-routes: [
-  blog,
-  docs
-]
+routes: [blog, board, docs]
 
-projects: [
-  https://github.com/shomykohai/quest-system,
-  https://github.com/shomykohai/godot-keyring,
-  https://github.com/shomykohai/askitsu,
-  https://github.com/shomykohai/kitsu-bot
-]
+projects:
+  [
+    https://github.com/shomykohai/quest-system,
+    https://github.com/shomykohai/godot-keyring,
+    https://github.com/shomykohai/askitsu,
+    https://github.com/shomykohai/kitsu-bot,
+  ]
+
+boardcfg:
+  default_avatar: "media/default_avatar.png"
 
 sass:
   style: compressed
 
 sitemap:
   banned: []
-  allowed: [
-    html
-  ]
-
+  allowed: [html]
 
 # Theme specific settings
 maple:
   date_format: "%b %-d, %Y"
-  footer: "Built by <a href=\"https://github.com/shomykohai\">Shomy</a> with <a href=\"https://github.com/shomykohai/jekyll-maple\">🍁</a> — inspired by autumn and fairies."
+  footer: 'Built by <a href="https://github.com/shomykohai">Shomy</a> with <a href="https://github.com/shomykohai/jekyll-maple">🍁</a> — inspired by autumn and fairies.'
   # Maximum number of articles to show in the default home page and articles.html include
   limit_shown_articles: true
   shown_articles_limit: 5
@@ -72,9 +71,9 @@ maple:
       color: cyan
     - url: https://shomy.is-a.dev/feed.xml
       icon: rss
-      fa-class: "solid" 
+      fa-class: "solid"
       color: dreamy-yellow
-    
+
   routes:
     - url: /
       title: Home
@@ -82,11 +81,13 @@ maple:
     - url: /blog/
       title: Blog
       icon: pen
+    - url: /board/
+      title: Board
+      icon: clipboard-list
     - url: /docs/
       title: Docs
       icon: book
-    
-  
+
   enable_authors_page: false
   authors:
     - id: shomy
@@ -95,8 +96,7 @@ maple:
       image:
         provider: "local"
         path: "media/avatar.jpg"
-      
-    
+
   sitemap:
     enable: true
     exclude_tags: true
@@ -104,6 +104,4 @@ maple:
       - /404.html
       - /feed.xml
       - /sitemap.xml
-    allowed_extensions: [
-      html
-    ]
+    allowed_extensions: [html]
