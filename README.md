@@ -1,6 +1,6 @@
 My website repository.
 
-### Posting on the board
+## Posting on the board
 
 To create a new post on the board, follow these steps:
 1. Navigate to the `_board` directory in the repository.
@@ -33,3 +33,10 @@ Supported markdown features include:
 - Bold, italics, and strikethrough text (respectively `**bold**`, `_italics_`, `~~strikethrough~~`)
 - Images, GIFs and links
 - Inline single `code` blocks
+
+RULES FOR POSTING:
+* Must be under 300 characters (images and markdown syntax are not counted in the final character count)
+* Be nice. Don't be rude, mean or weird in a *bad* way.
+* No spam or annoying stuff here
+* No NSFW. Keep everything SFW
+* Keep political takes to yourself (why even think of posting them here to begin with?)
