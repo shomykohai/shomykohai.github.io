@@ -71,7 +71,7 @@ module Jekyll
         images
       end
 
-      def download_image(url, dest_dir_abs, web_dir, timeout: 10)
+      def download_image(url, dest_dir_abs, web_dir, site, timeout: 10)
         return nil if url.nil? || url.empty? || !url.match?(/\Ahttps?:\/\//i)
 
         uri = URI.parse(url)
@@ -89,6 +89,14 @@ module Jekyll
           if response.is_a?(Net::HTTPSuccess)
             FileUtils.mkdir_p(dest_dir_abs)
             File.binwrite(fs_path, response.body)
+
+            site.static_files << Jekyll::StaticFile.new(
+              site,
+              site.source,
+              web_dir,
+              filename
+            )
+
             Jekyll.logger.info 'Board:', "Saved to: #{fs_path}"
             return web_path
           else
@@ -151,6 +159,7 @@ module Jekyll
               img[:original_url],
               images_dir_abs,
               config['images_dir'],
+              site,
               timeout: config['download_timeout']
             )
 
