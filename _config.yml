@@ -40,9 +40,9 @@ routes: [blog, board, docs]
 projects:
   [
     https://github.com/shomykohai/quest-system,
+    https://github.com/shomykohai/penumbra,
     https://github.com/shomykohai/godot-keyring,
     https://github.com/shomykohai/askitsu,
-    https://github.com/shomykohai/kitsu-bot,
   ]
 
 boardcfg:
