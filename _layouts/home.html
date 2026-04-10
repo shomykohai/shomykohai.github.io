@@ -1,6 +1,20 @@
 ---
 layout: default
 ---
+
+<style>
+
+    .container h1 {
+        text-align: center;
+        margin-top: 2rem;
+    }
+    .card-grid {
+        justify-content: center;
+        grid-template-columns: repeat(auto-fit, 280px);
+    }
+</style>
+
+
 {% assign posts_count = paginator.total_posts %}
 <h1>Projects</h1>
 <section class="projects-section">
@@ -9,7 +23,7 @@ layout: default
     {% capture project_image %}
     {{'/media/projects/'}}{{ "$reponame" | replace: "$reponame", project | split: "/" | last }}.png
     {% endcapture %}
-    
+
     <div class="card">
       <div class="card-image-wrapper">
         <a href="{{ project }}">

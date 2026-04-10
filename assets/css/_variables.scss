@@ -1,0 +1,39 @@
+:root {
+    --codeblock-bg: #f5ede3;
+    --codeblock-border: #e0d1c0;
+    --codeblock-text: #2a1f1f;
+}
+
+:root.dark {
+    --codeblock-bg: #0f0f0d;
+    --codeblock-border: rgba(255, 255, 255, 0.15);
+    --codeblock-text: #e6dfd7;
+}
+
+$color-in-case-i-make-it: #d98d00;
+$color-cheese-in-the-great-beyond: #b47821;
+
+$font-mono: "JetBrains Mono", monospace;
+$font-serif: "EB Garamond", serif;
+
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+
+$border-radius: 12px;
+$border-radius-sm: 8px;
+$border-radius-lg: 12px;
+
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 10px rgba(0, 0, 0, 0.05);
+$shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.12);
+$shadow-xl: 0 8px 28px rgba(0, 0, 0, 0.16);
+
+$transition-fast: 0.2s ease;
+$transition-base: 0.3s ease;
+$transition-slow: 0.6s ease;
+
+$breakpoint-lg: 1100px;
+$breakpoint-md: 900px;
+$breakpoint-sm: 750px;

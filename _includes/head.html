@@ -5,6 +5,9 @@
   {%- seo title=false -%}
   <title>{%- if page.title -%}{{page.title}} | {{site.title}}{%- else -%}{{site.title}}{%- endif -%}</title>
   <link rel="stylesheet" href="{{ "/assets/css/style.css" }}">
+  {% if page.layout == "post" %}
+  <link rel="stylesheet" href="https://unpkg.com/photoswipe@5.4.4/dist/photoswipe.css">
+  {% endif %}
   <link rel="icon" type="image/png" href="{{ "/assets/favicon.png" | relative_url }}" />
   <meta name="google-site-verification" content="DiXEB7EM1azgI5PAyoE4yt1lj8X7rkAKwkmpCHlzoPs" />
   <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}"></script>

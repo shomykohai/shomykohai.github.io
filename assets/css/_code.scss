@@ -1,0 +1,444 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+div.highlighter-rouge {
+    position: relative;
+    margin: $spacing-sm 0;
+    background: var(--codeblock-bg);
+    border: 2px solid var(--codeblock-border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: box-shadow $transition-base;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06);
+
+    &:hover {
+        box-shadow: 0 3px 9px rgba(0, 0, 0, 0.1);
+
+        .copy-btn {
+            opacity: 1;
+        }
+    }
+
+    .highlight {
+        @include reset-element();
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0.75rem 0;
+    }
+
+    pre {
+        @include reset-element();
+        display: block;
+        color: var(--codeblock-text);
+        font-family: $font-mono;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0 1rem;
+    }
+
+    code {
+        @include reset-element();
+        display: block;
+        color: inherit;
+        background: transparent;
+    }
+}
+
+div.highlighter-rouge .rouge-table {
+    width: 100%;
+    border-collapse: collapse;
+    @include reset-element();
+    margin: 0;
+    padding: 0;
+
+    tbody {
+        tr {
+            td {
+                padding: 0;
+                margin: 0;
+                vertical-align: top;
+                @include reset-element();
+                background: transparent;
+            }
+        }
+    }
+}
+
+div.highlighter-rouge .rouge-gutter {
+    user-select: none;
+    width: auto;
+    min-width: 2.75rem;
+    text-align: right;
+    padding-right: 1.5rem;
+    padding-left: 1rem;
+    border-right: 1px solid var(--codeblock-border);
+    vertical-align: top;
+
+    pre {
+        @include reset-element();
+        display: block;
+        background: transparent;
+        margin: 0;
+        padding: 0;
+        color: var(--codeblock-text);
+        font-family: $font-mono;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        opacity: 0.25;
+        white-space: pre;
+    }
+
+    .lineno {
+        color: var(--codeblock-text);
+        opacity: 0.25;
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+}
+
+div.highlighter-rouge .rouge-code {
+    width: 100%;
+    padding: 0 1rem 0 1.75rem;
+    vertical-align: top;
+
+    pre {
+        @include reset-element();
+        display: block;
+        background: transparent;
+        margin: 0;
+        padding: 0;
+        color: var(--codeblock-text);
+        font-family: $font-mono;
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+}
+
+div.highlighter-rouge .rouge-table .rouge-gutter {
+    min-width: 3rem;
+    padding-left: 0.5rem;
+    padding-right: 1.25rem;
+    border-right: 1px solid var(--codeblock-border);
+}
+
+div.highlighter-rouge .rouge-table .rouge-code {
+    padding-left: 1.25rem !important;
+}
+
+div.highlighter-rouge .rouge-table .rouge-code pre {
+    padding-left: 0 !important;
+}
+
+code:not(.highlighter-rouge) {
+    background: var(--codeblock-bg);
+    color: var(--codeblock-text);
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    font-family: $font-mono;
+    font-size: 0.9em;
+    display: inline-block;
+    border: none;
+    @include transition();
+
+    &::before,
+    &::after {
+        content: none;
+    }
+
+    &:hover {
+        opacity: 0.85;
+    }
+}
+
+div.highlighter-rouge code {
+    background: transparent;
+    color: var(--codeblock-text);
+    padding: 0;
+    border-radius: 0;
+
+    &:hover {
+        background: transparent;
+        color: var(--codeblock-text);
+        opacity: 1;
+    }
+}
+
+.highlighter-rouge .copy-btn {
+    @include reset-all();
+    position: absolute;
+    top: $spacing-sm;
+    right: $spacing-sm;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--codeblock-border);
+    border-radius: 6px;
+    color: var(--codeblock-text);
+    cursor: pointer;
+    opacity: 0;
+    z-index: 10;
+    font-size: 0.9rem;
+    @include transition();
+
+    @media (prefers-color-scheme: dark) {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.2);
+
+        @media (prefers-color-scheme: dark) {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    &.success {
+        background: rgba(0, 128, 0, 0.15);
+        border-color: rgba(0, 128, 0, 0.3);
+    }
+}
+
+.highlighter-rouge .copy-btn-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+}
+
+div.highlighter-rouge pre::selection {
+    background: var(--highlight);
+    color: var(--card);
+}
+
+.highlighter-rouge {
+    .c,
+    .cm,
+    .cp,
+    .cpf,
+    .c1,
+    .cs {
+        color: #9a8d82;
+        font-style: italic;
+    }
+
+    :root.dark & {
+        .c,
+        .cm,
+        .cp,
+        .cpf,
+        .c1,
+        .cs {
+            color: #9a8a7f;
+            font-style: italic;
+        }
+    }
+
+    .k,
+    .kc,
+    .kd,
+    .kp,
+    .kr,
+    .kn,
+    .kt {
+        color: #d98d00;
+        font-weight: 600;
+    }
+
+    :root.dark & {
+        .k,
+        .kc,
+        .kd,
+        .kp,
+        .kr,
+        .kn,
+        .kt {
+            color: #e5a85f;
+            font-weight: 600;
+        }
+    }
+
+    .nf,
+    .fm {
+        color: #9d7fd1;
+    }
+
+    :root.dark & {
+        .nf,
+        .fm {
+            color: #b8a0d6;
+        }
+    }
+
+    .nn,
+    .nb,
+    .nc {
+        color: #0077aa;
+        font-weight: 600;
+    }
+
+    :root.dark & {
+        .nn,
+        .nb,
+        .nc {
+            color: #5eb8d8;
+            font-weight: 600;
+        }
+    }
+
+    .na,
+    .nl {
+        color: #6a7a2e;
+    }
+
+    :root.dark & {
+        .na,
+        .nl {
+            color: #a8c85e;
+        }
+    }
+
+    .nv,
+    .vb,
+    .vc,
+    .vg,
+    .vi {
+        color: #0077aa;
+    }
+
+    :root.dark & {
+        .nv,
+        .vb,
+        .vc,
+        .vg,
+        .vi {
+            color: #5eb8d8;
+        }
+    }
+
+    .m,
+    .mf,
+    .mh,
+    .mi,
+    .mo,
+    .il {
+        color: #d98d00;
+    }
+
+    :root.dark & {
+        .m,
+        .mf,
+        .mh,
+        .mi,
+        .mo,
+        .il {
+            color: #e5a85f;
+        }
+    }
+
+    .s,
+    .sb,
+    .sc,
+    .s2,
+    .s1,
+    .se,
+    .sh,
+    .si,
+    .sx,
+    .sr,
+    .ss,
+    .sd {
+        color: #c85555;
+    }
+
+    :root.dark & {
+        .s,
+        .sb,
+        .sc,
+        .s2,
+        .s1,
+        .se,
+        .sh,
+        .si,
+        .sx,
+        .sr,
+        .ss,
+        .sd {
+            color: #f08080;
+        }
+    }
+
+    .o,
+    .ow {
+        color: #0077aa;
+        font-weight: 500;
+    }
+
+    :root.dark & {
+        .o,
+        .ow {
+            color: #5eb8d8;
+            font-weight: 500;
+        }
+    }
+
+    .p {
+        color: var(--codeblock-text);
+    }
+
+    .nt,
+    .nd,
+    .ni,
+    .ne {
+        color: #0077aa;
+    }
+
+    :root.dark & {
+        .nt,
+        .nd,
+        .ni,
+        .ne {
+            color: #5eb8d8;
+        }
+    }
+
+    .err {
+        background-color: #ffcccc;
+        color: #aa0000;
+    }
+
+    :root.dark & {
+        .err {
+            background-color: #4a1a1a;
+            color: #ff9999;
+        }
+    }
+
+    .gd {
+        color: #c85555;
+    }
+
+    .gi {
+        color: #6a7a2e;
+    }
+
+    .gs {
+        font-weight: bold;
+    }
+
+    .ge {
+        font-style: italic;
+    }
+
+    .w {
+        color: transparent;
+    }
+}

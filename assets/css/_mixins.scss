@@ -1,0 +1,252 @@
+@use "variables" as *;
+
+@mixin flex-center($direction: row, $gap: 0) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: center;
+    justify-content: center;
+    @if $gap > 0 {
+        gap: $gap;
+    }
+}
+
+@mixin flex-between($direction: row, $gap: 0) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: center;
+    justify-content: space-between;
+    @if $gap > 0 {
+        gap: $gap;
+    }
+}
+
+@mixin flex-row($align: center, $justify: flex-start, $gap: 0) {
+    display: flex;
+    flex-direction: row;
+    align-items: $align;
+    justify-content: $justify;
+    @if $gap > 0 {
+        gap: $gap;
+    }
+}
+
+@mixin flex-column($align: stretch, $justify: flex-start, $gap: 0) {
+    display: flex;
+    flex-direction: column;
+    align-items: $align;
+    justify-content: $justify;
+    @if $gap > 0 {
+        gap: $gap;
+    }
+}
+
+@mixin reset-all() {
+    all: initial;
+}
+
+@mixin reset-element() {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+}
+
+@mixin reset-pre() {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+}
+
+@mixin remove-pseudo() {
+    &::before {
+        content: none;
+    }
+    &::after {
+        content: none;
+    }
+}
+
+@mixin reset-link() {
+    text-decoration: none;
+    color: inherit;
+}
+
+@mixin card-base(
+    $bg: var(--card),
+    $border: var(--border),
+    $radius: 12px,
+    $shadow: $shadow-md
+) {
+    background: $bg;
+    border: 1px solid $border;
+    border-radius: $radius;
+    box-shadow: $shadow;
+    padding: 1rem;
+}
+
+@mixin card-hover($scale: 1.02, $shadow: $shadow-lg) {
+    transition:
+        transform $transition-fast,
+        box-shadow $transition-base;
+
+    &:hover {
+        transform: scale($scale);
+        box-shadow: $shadow;
+    }
+}
+
+@mixin bordered-container(
+    $bg: var(--card),
+    $border: var(--border),
+    $padding: 1rem
+) {
+    background: $bg;
+    border: 1px solid $border;
+    border-radius: 12px;
+    padding: $padding;
+}
+
+@mixin truncate-lines($lines: 1) {
+    @if $lines == 1 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    } @else {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        line-clamp: $lines;
+        -webkit-line-clamp: $lines;
+        -webkit-box-orient: vertical;
+    }
+}
+
+@mixin text-overflow() {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+@mixin transition($props: all, $duration: $transition-base) {
+    transition: $props $duration;
+}
+
+@mixin hover-transition($property: all, $duration: $transition-base) {
+    transition: $property $duration;
+
+    &:hover {
+        @content;
+    }
+}
+
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == lg {
+        @media (max-width: $breakpoint-lg) {
+            @content;
+        }
+    } @else if $breakpoint == md {
+        @media (max-width: $breakpoint-md) {
+            @content;
+        }
+    } @else if $breakpoint == sm {
+        @media (max-width: $breakpoint-sm) {
+            @content;
+        }
+    }
+}
+
+@mixin grid-auto($min-width: 250px, $gap: 1.5rem) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($min-width, 1fr));
+    gap: $gap;
+    width: 100%;
+}
+
+@mixin grid-fixed($columns: 3, $gap: 1.5rem) {
+    display: grid;
+    grid-template-columns: repeat($columns, minmax(auto, 350px));
+    gap: $gap;
+    justify-content: center;
+    width: 100%;
+}
+
+@mixin button-base($bg: var(--border), $color: var(--text), $radius: 8px) {
+    background: $bg;
+    border: 1px solid $bg;
+    border-radius: $radius;
+    color: $color;
+    cursor: pointer;
+    @include transition();
+}
+
+@mixin button-hover($bg-hover: var(--highlight), $color-hover: var(--card)) {
+    &:hover {
+        background: $bg-hover;
+        border-color: $bg-hover;
+        color: $color-hover;
+    }
+}
+
+@mixin interactive-press() {
+    &:active {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+}
+
+@mixin shadow($level: md) {
+    @if $level == sm {
+        box-shadow: $shadow-sm;
+    } @else if $level == md {
+        box-shadow: $shadow-md;
+    } @else if $level == lg {
+        box-shadow: $shadow-lg;
+    } @else if $level == xl {
+        box-shadow: $shadow-xl;
+    }
+}
+
+@mixin gradient-highlight-accent() {
+    background: linear-gradient(
+        135deg,
+        var(--highlight) 0%,
+        var(--accent) 100%
+    );
+}
+
+@mixin gradient-accent-highlight() {
+    background: linear-gradient(
+        135deg,
+        var(--accent) 0%,
+        var(--highlight) 100%
+    );
+}
+
+@mixin input-base($bg: var(--card), $border: var(--border)) {
+    background: $bg;
+    border: 1px solid $border;
+    padding: 0.5rem;
+    border-radius: 6px;
+    @include transition();
+}
+
+@mixin code-base($font: $font-mono, $size: 0.9rem) {
+    font-family: $font;
+    font-size: $size;
+    line-height: 1.6;
+}
+
+@mixin codeblock-container() {
+    background: var(--codeblock-bg);
+    border: 1px solid var(--codeblock-border);
+    border-radius: 12px;
+    overflow: hidden;
+    @include transition();
+    @include shadow(lg);
+
+    &:hover {
+        @include shadow(xl);
+    }
+}
